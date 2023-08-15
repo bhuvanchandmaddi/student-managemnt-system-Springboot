@@ -27,7 +27,8 @@ pipeline {
                     '''
                 }
             }
-        }
+        stage('Build preparations')
+        {
             steps
             {
                 script
@@ -67,6 +68,7 @@ pipeline {
 
                 }
             }
+        }
     }
                     
     post {
