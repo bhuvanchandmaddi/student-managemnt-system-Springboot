@@ -44,7 +44,7 @@ pipeline {
 			  def minikube_password = 'minikube'
 			  def KUBECONFIG = '/tmp/config'
 		          sh '''
-	                  sudo -u minikube
+	                  su minikube
                           id
                           helm upgrade --insecure-skip-tls-verify --install springbootapp  student-managemnt-system-helmcharts/sprintboot-app -f student-managemnt-system-helmcharts/sprintboot-app/files/extfile.yaml
                           '''
