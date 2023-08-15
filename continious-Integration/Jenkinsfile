@@ -79,8 +79,6 @@ pipeline {
       failure {
         echo 'failed job'
       }
-      cleanup {
-        cleanWs()
-      }
+
   }
 }
