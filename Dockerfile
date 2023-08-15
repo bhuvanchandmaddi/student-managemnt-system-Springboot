@@ -1,17 +1,16 @@
 # Use an official Maven image as the build environment
-FROM maven:3.8.4-openjdk-17 AS build
+FROM yannoff/maven:3.8.5-openjdk-17-alpine AS build
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the source code to the container
 COPY . .
-
 # Build the application using Maven
 RUN mvn clean install -DskipTests
 
 # Use an official OpenJDK runtime as the application environment
-FROM openjdk:17-jre-slim
+FROM openjdk:17-jdk
 
 # Set the working directory
 WORKDIR /app
