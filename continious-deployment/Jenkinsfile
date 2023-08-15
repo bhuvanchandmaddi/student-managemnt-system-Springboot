@@ -43,8 +43,9 @@ pipeline {
                         script{
 			  //def KUBECONFIG = '/tmp/config'
 		          sh '''
-                    export KUBECONFIG=/home/minikube/.kube/config
-                    helm upgrade --insecure-skip-tls-verify --install springbootapp  student-managemnt-system-helmcharts/sprintboot-app -f student-managemnt-system-helmcharts/sprintboot-app/files/extfile.yaml
+	                  def minikube_password = 'minikube'
+			  def KUBECONFIG = '/tmp/config'
+                          echo "${minikube_password}" | sudo -u minikube -S helm upgrade --insecure-skip-tls-verify --install springbootapp  student-managemnt-system-helmcharts/sprintboot-app -f student-managemnt-system-helmcharts/sprintboot-app/files/extfile.yaml
                     '''
 		}      
             }
@@ -52,7 +53,7 @@ pipeline {
     }
     post { 
         always { 
-			sh "docker rmi $IMAGE | true"
+			//sh "docker rmi $IMAGE | true"
             //cleanWs()
         }
     }    
