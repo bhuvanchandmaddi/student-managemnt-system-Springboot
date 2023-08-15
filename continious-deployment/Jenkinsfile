@@ -44,7 +44,7 @@ pipeline {
 			  def minikube_password = 'minikube'
 			 // def KUBECONFIG = '/tmp/config'
 	                  sh '''
-                          echo "${minikube_password}" | sudo -u minikube -S helm upgrade --insecure-skip-tls-verify --install springbootapp  sprintboot-app/ -f sprintboot-app/files/extfile.yaml
+                          echo "${minikube_password}" | sudo -u minikube -S helm upgrade --insecure-skip-tls-verify --install springbootapp  springboot-app/ -f springboot-app/files/extfile.yaml
                           '''
 		}      
             }
