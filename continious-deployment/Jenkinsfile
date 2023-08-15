@@ -43,7 +43,7 @@ pipeline {
                         script{
 			  //def KUBECONFIG = '/tmp/config'
 		          sh '''
-                    export KUBECONFIG=/home/jenkins/.kube/config
+                    export KUBECONFIG=/home/minikube/.kube/config
                     helm upgrade --insecure-skip-tls-verify --install springbootapp  student-managemnt-system-helmcharts/sprintboot-app -f student-managemnt-system-helmcharts/sprintboot-app/files/extfile.yaml
                     '''
 		}      
