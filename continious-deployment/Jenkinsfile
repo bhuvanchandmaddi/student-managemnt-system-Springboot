@@ -55,6 +55,7 @@ pipeline {
         always { 
 			//sh "docker rmi $IMAGE | true"
             //cleanWs()
+		echo "This will be executed always"
         }
     }    
 }
