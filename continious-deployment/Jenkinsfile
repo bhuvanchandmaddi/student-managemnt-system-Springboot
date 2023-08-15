@@ -4,7 +4,7 @@ pipeline {
         registry = "bmaddi/studentmanagement-springboot-app"
         BRANCH = "main"
         APP_CONFIG_REPO_URL = "https://github.com/bhuvanchandmaddi/student-managemnt-system-helmcharts.git"
-        image_tag= "18.daa4759"
+        image_tag = "18.daa4759"
 
     }
 
@@ -41,10 +41,9 @@ pipeline {
         stage('Install service') { 
             steps {
                         script{
-			  //def KUBECONFIG = '/tmp/config'
-		          sh '''
-	                  def minikube_password = 'minikube'
+			  def minikube_password = 'minikube'
 			  def KUBECONFIG = '/tmp/config'
+		          sh '''
                           echo "${minikube_password}" | sudo -u minikube -S helm upgrade --insecure-skip-tls-verify --install springbootapp  student-managemnt-system-helmcharts/sprintboot-app -f student-managemnt-system-helmcharts/sprintboot-app/files/extfile.yaml
                     '''
 		}      
