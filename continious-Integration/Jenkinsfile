@@ -16,8 +16,7 @@ pipeline {
 
     }
     stages {
-    stage('Build preparations')
-        {
+
             stage('Maven Build'){
                 steps{
                     sh '''
@@ -68,7 +67,7 @@ pipeline {
 
                 }
             }
-        }
+        
     }
                     
     post {
