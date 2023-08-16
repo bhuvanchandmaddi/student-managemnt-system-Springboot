@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: springboot-argo-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/bhuvanchandmaddi/student-managemnt-system-helmcharts.git
+    targetRevision: HEAD
+    path: springboot-app
+
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: springboot
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+  automated:
+    selfHeal: true
+    prune: true
+
+  # Define Helm chart installation settings
+  sourceType: Helm
+  helm:
+    valueFiles:
+    - springboot-app/files/extfile.yaml  # Path to your external values file relative to the helm chart directory
