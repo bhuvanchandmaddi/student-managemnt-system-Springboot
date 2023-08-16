@@ -38,7 +38,8 @@ pipeline {
                     VERSION = shortCommitHash
                     currentBuild.displayName = "${PROJECT}-${VERSION}"
                     IMAGE = "$DOCKERREPO/$PROJECT:${BUILD_NUMBER}.${VERSION}"
-		    env.IMAGE_TAG = "${BUILD_NUMBER}.${VERSION}"
+		    IMAGE_TAG = "${BUILD_NUMBER}.${VERSION}"
+		    env.IMAGE_TAG = IMAGE_TAG
                 }
             }
         }
@@ -79,7 +80,7 @@ pipeline {
                     cd student-managemnt-system-helmcharts
                     git config user.email "bhuvanchand@gmail.com"
                     git config user.name "BhuvanChand"
-                    IMAGE_TAG=${IMAGE_TAG}
+                    IMAGE_TAG=${env.IMAGE_TAG}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" springboot-app/files/extfile.yaml
                     git add springboot-app/files/extfile.yaml
                     git commit -m "Update deployment image to version ${IMAGE_TAG}"
