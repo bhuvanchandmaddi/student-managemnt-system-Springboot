@@ -81,7 +81,7 @@ pipeline {
                     git config user.email "bhuvanchand@gmail.com"
                     git config user.name "BhuvanChand"
                     IMAGE_TAG=${IMAGE_TAG}
-                    sed -i "s/tag: [0-9]\+\.[0-9a-f]\{7\}/tag: ${IMAGE_TAG}/" springboot-app/files/extfile.yaml
+                    sed -i "s/tag: [0-9]\\+\\.[0-9a-f]\\{7\\}/tag: ${env.IMAGE_TAG}/" springboot-app/files/extfile.yaml
                     git add springboot-app/files/extfile.yaml
                     git commit -m "Update deployment image to version ${IMAGE_TAG}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
