@@ -53,7 +53,7 @@ pipeline {
             }
         }
 
-               stage('Docker push')
+   stage('Docker push')
         {
             steps
             {
@@ -66,6 +66,26 @@ pipeline {
 
                 }
             }
+   stage('Update Image Id in File') {
+        environment {
+            GIT_REPO_NAME = "student-managemnt-system-helmcharts"
+            GIT_USER_NAME = "bhuvanchandmaddi"
+        }
+        steps {
+            withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+                sh '''
+		    git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}
+                    cd student-managemnt-system-helmcharts
+                    git config user.email "bhuvanchand@gmail.com"
+                    git config user.name "BhuvanChand"
+                    IMAGE_TAG=${BUILD_NUMBER}.${VERSION}"
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" springboot-app/files/extfile.yaml
+                    git add springboot-app/files/extfile.yaml
+                    git commit -m "Update deployment image to version ${IMAGE_TAG}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+            }
+        }
         
     }
                     
@@ -79,8 +99,8 @@ pipeline {
       failure {
         echo 'failed job'
       }
-      cleanup {
-        cleanWs()
-      }
+      // cleanup {
+      //   cleanWs()
+      // }
   }
 }
