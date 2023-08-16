@@ -102,8 +102,8 @@ pipeline {
       failure {
         echo 'failed job'
       }
-      // cleanup {
-      //   cleanWs()
-      // }
+      cleanup {
+        cleanWs()
+      }
   }
 }
