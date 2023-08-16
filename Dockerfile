@@ -16,5 +16,6 @@ COPY target/* .
 # Copy Thymeleaf templates from the source code
 COPY src/main/resources/templates /app/templates
 
+EXPOSE 8080
 # Sleep indefinitely to keep the container running
 CMD ["java", "-jar","student-management-system-0.0.1-SNAPSHOT.jar"]
