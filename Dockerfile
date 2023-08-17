@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y default-mysql-client
 WORKDIR /app
 
 # Copy the executable JAR from the build stage
-COPY target/* .
+COPY target/* /app/
 
 # Copy Thymeleaf templates from the source code
 COPY src/main/resources/templates /app/templates
