@@ -24,6 +24,7 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 	@GetMapping("/dummy")
+	@ResponseBody
 	public String getPropertyValue() {
 	   return env.getProperty("greeting.message");
 	}
