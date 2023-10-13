@@ -12,12 +12,18 @@ import net.javaguides.sms.service.StudentService;
 
 @Controller
 public class StudentController {
+        @Autowired
+        private Environment env;
 	
 	private StudentService studentService;
 
 	public StudentController(StudentService studentService) {
 		super();
 		this.studentService = studentService;
+	}
+	@GetMapping("/dummy")
+	public String getPropertyValue() {
+	   return env.getProperty("greeting.message");
 	}
 	
 	// handler method to handle list students and return mode and view
