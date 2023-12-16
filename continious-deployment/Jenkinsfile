@@ -2,7 +2,7 @@ pipeline {
   agent any
     environment{
         registry = "bmaddi/studentmanagement-springboot-app"
-        BRANCH = "main"
+        BRANCH = "sample"
         APP_CONFIG_REPO_URL = "https://github.com/bhuvanchandmaddi/student-managemnt-system-helmcharts.git"
         image_tag = "33.e43f5eb"
 
